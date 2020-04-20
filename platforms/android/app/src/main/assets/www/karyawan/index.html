@@ -1,0 +1,159 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>Karyawan</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <meta name="theme-color" content="#563d7c">
+    <!-- Custom styles for this template -->
+    <!-- <link href="signin.css" rel="stylesheet"> -->
+</head>
+<body onload="onLoad()">
+    <div class="p-3 mb-3 bg-white border-bottom shadow-sm">
+        <!-- <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5> -->
+        <div class="row">
+            <div class="col-sm-12">
+                <nav class="row my-2 my-md-0 mr-md-3">
+                    <a class="col-4 text-dark text-left" href="agreement.html"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back</a>
+                    <b class="col-4 bg-warning text-dark text-center align-middle rounded-lg" href="#!">Pengawas</b>
+                    <div class="col-4 text-dark text-right" ><b>Premier</b></div>
+                </nav>
+            </div>            
+        </div>
+        
+      </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <form action="#!" method="GET" class="row">
+                <div class="form-group col-6">
+                    <label for="pilihTanggal">Pilih Tanggal:</label>
+                    <select name="pilihTanggal" id="pilihTanggal" class="custom-select"></select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="row">
+            <div class="col-12">
+                <canvas id="myChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+ <!-- <script src="../cordova.js"></script> -->
+ <script src="../js/app.js"></script>
+<script>
+
+  function onLoad() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var datapoints = [20, 20, 60, 60, 120, 180, 120, 125, 105, 110, 170];
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            datasets: [{
+					label: 'Cubic interpolation (monotone)',
+					data: datapoints,
+					borderColor: window.chartColors.red,
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+					cubicInterpolationMode: 'monotone'
+				}, {
+					label: 'Cubic interpolation (default)',
+					data: datapoints,
+					borderColor: window.chartColors.blue,
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+				}, {
+					label: 'Linear interpolation',
+					data: datapoints,
+					borderColor: window.chartColors.green,
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+					lineTension: 0
+				}]
+        },
+        options: {
+                responsive: true,
+				title: {
+					display: true,
+					text: 'Productivity'
+				},
+				tooltips: {
+					mode: 'index'
+				},
+                scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+						},
+						ticks: {
+							suggestedMin: -10,
+							suggestedMax: 200,
+						}
+					}]
+				},
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }
+                }
+        }
+    });
+      document.addEventListener("deviceready", onDeviceReady, false);
+  }
+
+  // device APIs are available
+  //
+  function onDeviceReady() {
+    
+      document.addEventListener("pause", onPause, false);
+      document.addEventListener("resume", onResume, false);
+      document.addEventListener("menubutton", onMenuKeyDown, false);
+      // $(".submit").click(submitting());
+      // Add similar listeners for other events
+  }
+
+  function onPause(){
+
+  }
+
+  function onResume(){
+
+  }
+
+  function onMenuKeyDown(){
+
+  }
+</script>
+</body>
+</html>

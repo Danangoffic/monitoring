@@ -1,0 +1,758 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.6">
+  <title>Operator</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta name="theme-color" content="#0050a1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <!-- <link href="signin.css" rel="stylesheet"> -->
+  <style>
+      .btn-no-padd{
+          padding: 0 !important;
+      }
+      .card-header{
+          padding: 0.4rem
+      }
+      .card-body{
+          padding: 0.4rem;
+      }
+      .card{
+          margin: 0.4rem auto;
+      }
+      .engineStarted{
+          display: none;
+      }
+      .card, button{
+          font-size: 12px !important;
+      }
+  </style>
+</head>
+<body onload="onLoad()" class="bg-light">
+    <div class="p-3 mb-3 bg-white border-bottom shadow-sm">
+        <!-- <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5> -->
+        <div class="row">
+            <div class="col-sm-6">
+                <nav class="row my-2 my-md-0 mr-md-3">
+                    <a class="col-4 text-dark text-left" href="agreement.html"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back</a>
+                    <b class="col-4 bg-warning text-dark text-center align-middle rounded-lg" href="#!">Operator</b>
+                    <div class="col-4 text-dark text-right" style="background-color:transparent;" id="engineStatus" >Engine Off <i class="material-icons text-danger">flash_on</i></div>
+                </nav>
+            </div>
+            <div class="col-sm-6">
+                <nav class="row my-2 my-md-0 mr-md-3 text-center">
+                    <a href="#!" class="col-12 text-dark text-center">DAFTAR AKTIVITAS</a>
+                </nav>
+            </div>
+            
+        </div>
+        
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4 col-sm-4">
+                        <div class="card">
+                            <div class="card-header text-center">Waktu</div>
+                            <div class="card-body text-center Hours"><time>10:10:10</time></div>
+                        </div>
+                      </div>
+                      <div class="col-4 col-sm-4">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <div class="dropdown">
+                                  <button class="btn btn-no-padd dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Material&nbsp;</button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <span class="dropdown-item">-</span>
+                                    <a class="dropdown-item" href="#" onclick="setMaterial('NO RIPPING')">NO RIPPING</a>
+                                    <a class="dropdown-item" href="#" onclick="setMaterial('RIPPING')">RIPPING</a>
+                                    <a class="dropdown-item" href="#" onclick="setMaterial('TOP SOIL')">TOP SOIL</a>
+                                    <a class="dropdown-item" href="#" onclick="setMaterial('MUD')">MUD</a>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="card-body text-center material-type">&nbsp;</div>
+                        </div>           
+                      </div>
+                      <div class="col-4 col-sm-4">
+                          <div class="card">
+                              <div class="card-header text-center" id="content-engine-control" onclick="controlEngine()"></div>
+                              <div class="card-body text-center engine-timer">00:00:00</div>
+                          </div>
+                      </div>
+                    <div class="col-12">
+                        <table class="table rounded table-bordered">
+                            <tr>
+                                <td class="text-center px-0" width="50%" id="activity-now">-</td>
+                                <td class="text-center bg-warning durasi-activity px-0 m-0" width="50%">00:00:00</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center px-0" width="50%" id="status-now">-</td>
+                              <td class="text-center bg-warning durasi-status px-0 m-0" width="50%">00:00:00</td>
+                          </tr>
+                        </table>
+                    </div>
+                    <div class="col-12 col-sm-12 ">
+                        <table class="table p-0 m-0 table-borderless rounded rounded-top">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="border text-center">PRODUCTIVITAS UNIT</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td class="bg-primary p-1" id="allProductivity" width="50%">&nbsp;</td>
+                                <td class="bg-danger p-1" id="acitivityNow" width="50%">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-header text-center">EFEKTIF</div>
+                            <div class="card-body bg-primary text-light" id="efektf">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header text-center">MUATAN</div>
+                            <div class="card-body">
+                                <div id="listMuatan">
+                                    loading..
+                                </div>
+                                <!-- <button class="btn btn-success btn-block no-gutters" ></button>
+                                <button class="btn btn-success btn-block no-gutters" ></button>
+                                <button class="btn btn-success btn-block no-gutters" ></button> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-header text-center">
+                              <div class="dropdown">
+                                  <button class="btn btn-no-padd dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Metode&nbsp;</button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <span class="dropdown-item" onclick="setMetode(null)">-</span>
+                                    <a class="dropdown-item" href="#" onclick="setMetode('TOP')">TOP</a>
+                                    <a class="dropdown-item" href="#" onclick="setMetode('DOUBLE')">DOUBLE</a>
+                                    <a class="dropdown-item" href="#" onclick="setMetode('NORMAL')">NORMAL</a>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row no-gutters" id="allMetode"></div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered p-0 m-0">
+                            <tr class="p-0 m-0">
+                                <td class="text-center p-0 m-0 align-middle bg-light" width="20%"><h5>RITASE</h5></td>
+                                <td class="text-center p-0 m-0 align-middle" width="40%"></td>
+                                <td class="text-center p-0 m-0 align-middle" width="40%"></td>
+                            </tr>
+                        </table>
+                        <div class="row mt-1">
+                            <div class="col-6 engineStarted custom-control custom-radio">
+                                <label for="aktifitias29" class="btn btn-warning btn-block btn-lg border border-dark btn-block text-left" style="font-size:14px !important; font-weight:bolder">
+                                    <input type="radio" name="aktifitas" id="aktifitias29" autocomplete="off" value="028" onclick="setAktifitias(this.value)"> WAIT DT
+                                </label>
+                            </div>
+                            <div class="col-6 engineStarted">
+                                <button class="btn btn-danger btn-block btn-lg" onclick="doneWork()" style="font-size:13px !important; font-weight:bolder">SELESAI&nbsp;KERJA</button>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block btn-lg" id="btn-engine-control" onclick="controlEngine()" style="font-size:12px !important; font-weight:bolder">START ENGINE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    
+                </div>
+            </div>
+          
+            <div class="col-6">
+                <div class="row no-gutters" id="allActivity">
+                    loading..
+                </div>
+                <div class="row no-gutters" id="allStatus"></div>
+            </div>
+          </div>
+      </div>
+      
+  
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Masukkan Angka</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form onsubmit="setSubmitAktifitas($('#kodeAct').val())">
+                <div class="form-group">
+                    <input type="number" class="form-control form-control-lg" id="kodeAct" placeholder="Masukkan Angka Aktivitas" autofocus autocomplete="off">
+                </div>
+            </form>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="setSubmitAktifitas($('#kodeAct').val())">OK</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- <script src="../cordova.js"></script> -->
+  <script src="../js/app.js"></script>
+  <script>
+    var dataLogin = JSON.parse(storage.dataUserLogin);
+    console.log(storage.dataUserLogin);
+    console.log(dataLogin.nrp);
+    var operator_start = JSON.parse(storage.engineOperator);
+    var material=null, metode=null, aktivitas=null, muatan=parseInt(0), status=null, muatanPerJam = parseInt(0);
+    var statusEngine = 0;
+    var iconStop = '<i class="fas fa-pause-circle text-danger"></i>';
+    var iconStart = '<i class="fas fa-play-circle text-success"></i>';
+    //   var btnTriggerTimer = $(".btn-trigger-timer");
+    // variabel untuk timer awal sampai akhir
+    var h1 = $(".engine-timer"),  seconds = 0, minutes = 0, hours = 0,t;
+    // variabel untuk durasi activity
+    var durasiActivity = $(".durasi-activity"), secondsAct=0, minutesAct=0, hoursAct=0, tAct;
+    // variabel untuk durasi status
+    var durasiStatus = $(".durasi-status"), secondsStatus=0, minutesStatus=0, hoursStatus=0, tStatus;
+    // variabel untuk engine control
+    var engineControl = $("#content-engine-control");
+    var btnEngineControl = $("#btn-engine-control");
+    // variabel untuk string timer
+    var runningTimer = '00:00:00', actTimer='00:00:00', statTimer='00:00:00';
+    var all_productivity_unit=0, activity_productivity_unit=0, effectivness=0, ritase_sebelum=0, ritase_sekarang=0;
+    var engineMinute = 0;
+    var hitungPerJam = parseInt(0);
+    
+    
+    createdBy = operator_start.UID;
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        $(".Hours").html(h + ":" + m + ":" + s);
+        var t2 = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+    
+    function onLoad(){
+        if(dataLogin.ULEVEL != 1){
+            window.location.href='../login/index.html';
+        }
+        //TIME NOW
+        startTime();
+        // controlEngine();
+        loadActivity();
+        loadMuatan();
+        loadMetode();
+        loadStatus();
+        if(statusEngine==0){
+            $(".engineStarted").hide();
+            $("#btn-engine-control").show();
+            statusEngine = 0;
+            storage.setItem('statusEngine', statusEngine);
+            engineControl.html('Engine&nbsp;'+iconStart);
+            engineControl.removeClass("bg-success");
+            btnEngineControl.removeClass("btn-danger");
+            btnEngineControl.addClass("btn-success");
+            btnEngineControl.html("START ENGINE");
+            btnEngineControl.attr('onclick', 'controlEngine()');
+            console.log("status engine : " + statusEngine);
+            $("#engineStatus").html('<p class="p-0 m-0 text-danger">Engine Off <i class="material-icons">flash_on</i></p>');
+        }else{
+            statusEngine = 1;
+            storage.setItem('statusEngine', statusEngine);
+            engineControl.html('Engine&nbsp;'+iconStop);
+            engineControl.addClass("bg-success");
+            btnEngineControl.removeClass("btn-success");
+            btnEngineControl.addClass("btn-danger");
+            btnEngineControl.html("SELESAI KERJA");
+            btnEngineControl.attr('onclick', 'doneWork()');
+            console.log("status engine : " + statusEngine);
+            $("#btn-engine-control").hide();
+            $(".engineStarted").show();
+            $("#engineStatus").html('<p class="p-0 m-0 text-success">Engine On <i class="material-icons">flash_on</i></p>');
+        }
+        $(document).ready(onDeviceReady);
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // $("input[name=aktifitasi]:radio").on('change', function(){
+            
+        // });
+    }
+
+    function onDeviceReady() {
+        if(statusEngine==0){
+            engineControl.html('Engine&nbsp;'+iconStart);
+        }else{
+            engineControl.html('Engine&nbsp;'+iconStop);
+
+            $("input:radio").on('click', function(){
+                if($("input:radio:checked")){
+                    if(statusEngine==0){
+                        this.prop('checked', false);
+                        engineNotStart();
+                    }
+                }
+                
+            });
+        }
+    }
+
+    function controlEngine(){
+        if(statusEngine==0){
+            timer();
+            statusEngine = 1;
+            storage.setItem('statusEngine', statusEngine);
+            engineControl.html('Engine&nbsp;'+iconStop);
+            engineControl.addClass("bg-success");
+            btnEngineControl.removeClass("btn-success");
+            btnEngineControl.addClass("btn-danger");
+            btnEngineControl.html("SELESAI KERJA");
+            btnEngineControl.attr('onclick', 'doneWork()');
+            console.log("status engine : " + statusEngine);
+            $("#btn-engine-control").hide();
+            $(".engineStarted").show();
+            $("#engineStatus").html('<p class="p-0 m-0 text-success">Engine On <i class="material-icons">flash_on</i></p>');
+            if(secondsAct > 0 || minutesAct > 0 || hoursAct > 0){
+                timerActivity();
+            }
+            if(secondsStatus > 0 || minutesStatus > 0 || hoursStatus > 0){
+                timerStatus();
+            }
+            submitting();
+        }else{
+            $(".engineStarted").hide();
+            $("#btn-engine-control").show();
+            clearTimeout(t);
+            statusEngine = 0;
+            storage.setItem('statusEngine', statusEngine);
+            engineControl.html('Engine&nbsp;'+iconStart);
+            engineControl.removeClass("bg-success");
+            btnEngineControl.removeClass("btn-danger");
+            btnEngineControl.addClass("btn-success");
+            btnEngineControl.html("START ENGINE");
+            btnEngineControl.attr('onclick', 'controlEngine()');
+            console.log("status engine : " + statusEngine);
+            $("#engineStatus").html('<p class="p-0 m-0 text-danger">Engine Off <i class="material-icons">flash_on</i></p>');
+            if(secondsAct > 0 || minutesAct > 0 || hoursAct > 0){
+                clearTimeout(tAct)
+            }
+            if(secondsStatus > 0 || minutesStatus > 0 || hoursStatus > 0){
+                clearTimeout(tStatus);
+            }
+            submitting();
+        }
+    }
+
+    function allProductivityHTML(e){
+        var table = '<table class="table table-borderless m-0 p-0">';
+                table += '<tr>';
+                    table += '<td class="text-center p-0 m-0" valign="middle"><h3>All:</h3></td>';
+                    table += '<td class="text-center row  p-0 m-0" valign="middle"><h3 class="col-6">'+e+'</h3><b class="col-6"><u>BCM</u><br>JAM</b></td>';
+                    // table += '<td class="text-center"></td>';
+                table += '</tr>';
+            table += '</table>';
+        $("#allProductivity").html(table);
+    }
+
+    function timer() {
+        t = setTimeout(add, 1000);
+    }
+
+    function add() {
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes >= 60) {
+                minutes = 0;
+                hours++;
+                muatanPerJam=0;
+            }
+        }
+        runningTimer = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+        h1.html(runningTimer);
+        if(seconds > 0||minutes > 0){
+            hitungPerJam =hours+1;
+        }
+        all_productivity_unit = muatan/hitungPerJam;
+        activity_productivity_unit = muatanPerJam;
+        effectivness = (isNaN(minutesAct/minutes)) ? 0 : minutesAct/minutes;
+        allProductivityHTML(all_productivity_unit);
+        timer();
+    }
+
+    function stopActivityTimer(tAct) {
+        clearTimeout(tAct);
+    }
+
+    function timerActivity(){
+        tAct = setTimeout(addActTimer, 1000);
+    }
+
+    function addActTimer(){
+        secondsAct++;
+        if (secondsAct >= 60) {
+            secondsAct = 0;
+            minutesAct++;
+            if (minutesAct >= 60) {
+                minutesAct = 0;
+                hoursAct++;
+            }
+        }
+        actTimer = (hoursAct ? (hoursAct > 9 ? hoursAct : "0" + hoursAct) : "00") + ":" + (minutesAct ? (minutesAct > 9 ? minutesAct : "0" + minutesAct) : "00") + ":" + (secondsAct > 9 ? secondsAct : "0" + secondsAct);
+        durasiActivity.html(actTimer);
+        timerActivity();
+    }    
+
+    function timerStatus(){
+        tStatus = setTimeout(addStatusTimer, 1000);
+    }
+
+    function addStatusTimer() {
+        secondsStatus++;
+        if(secondsStatus >= 60){
+            secondsStatus = 0;
+            minutesStatus++;
+            if (minutesStatus >= 60) {
+                minutesStatus = 0;
+                hoursStatus++;
+            }
+        }
+        statTimer = (hoursStatus ? (hoursStatus > 9 ? hoursStatus : "0" + hoursStatus) : "00") + ":" + (minutesStatus ? (minutesStatus > 9 ? minutesStatus : "0" + minutesStatus) : "00") + ":" + (secondsStatus > 0 ? secondsStatus : "0" + secondsStatus);
+        durasiStatus.html(statTimer);
+        timerStatus;
+    }
+
+    function doneWork(){
+        statusEngine = 0;
+        storage.setItem('statusEngine', statusEngine);
+        var confirmation = window.confirm("Apakan Anda Yakin Kerjaan Anda Selesai");
+        if(confirmation){
+            alert("Selesai");
+            window.location.href="hm-akhir.html";
+        }
+        
+        navigator.notification.confirm(
+            'Apakah Anda Yakin Kerjaan Anda Selesai?', // message
+            onConfirm,            // callback to invoke with index of button pressed
+            'Konfirmasi Kerjaan',           // title
+            ['Ya','Belum']     // buttonLabels
+        );
+    }
+
+    function onConfirm(index){
+        alert("Button clicked is : " + index);
+    }
+    
+      
+    function setMaterial(e){
+        if(statusEngine==0){
+            // alert("Engine Timer Belum Aktif");
+            engineNotStart();
+            return false;
+        }
+        material = e;
+        console.log('Material Set To : ' + material);
+        $(".material-type").html('<b>'+material+'</b>');
+        submitting();
+    }
+      
+    function setMetode(e){
+        if(statusEngine==0){
+            // alert("Engine Timer Belum Aktif");
+            $("input[name=metode]:radio:checked").prop('checked', false);
+            engineNotStart();
+            return false;
+        }
+        if(e==null){
+            e="&nbsp;";
+        }
+          metode = e;
+          submitting();
+          console.log('Metode Set To : ' + metode);
+          $("#metode").html("<b>"+metode+"</b>");
+    }
+
+    function setSubmitAktifitas(e) {
+        if(statusEngine==0){
+            $("#kodeAct").val("");
+            $('#myModal').modal('toggle');
+            engineNotStart();
+            return false;
+        }
+
+        $.ajax({
+            url: url+ 'Activity/getByKode',
+            type: 'GET',
+            async: false,
+            data: {kode: e},
+            dataType: 'JSON',
+            success: function(e){
+                $("#activity-now").html(e.activity);
+                console.log('Aktivitas Set To : ' + e.activity);
+                aktivitas = e.kode;
+                submitting();
+                $("input[name=aktifitas]").prop('checked', false);
+                $("input[name=aktifitas][value="+e.kode+"]").prop('checked', true);
+                $('#myModal').modal('hide');
+            },
+            error: function(e){
+                $('#myModal').modal('hide');
+                notFound(e.response);
+            }
+        });
+    }
+
+    function setAktifitias(e){
+        if(statusEngine==0){
+            $("input[name=aktifitas]").prop('checked', false);
+            engineNotStart();
+            return false;
+        }
+        // aktivitas = e;
+        if(aktivitas!==null){
+            submitting();
+        }
+        $.ajax({
+            url: url+ 'Activity/getByKode',
+            type: 'GET',
+            async: false,
+            data: {kode: e},
+            dataType: 'JSON',
+            success: function(e){
+                $("#activity-now").html(e.activity);
+                console.log('Aktivitas Set To : ' + e.activity);
+                aktivitas = $("input[name=aktifitas]:radio:checked").val();
+                submitting();
+                // secondsAct=0, minutesAct=0, hoursAct=0, tAct;
+                // timerActivity();
+                clearTimeout(tAct);
+                secondsAct=0, minutesAct=0, hoursAct=0, tAct;
+                setTimeout(addActTimer, 1000);
+            }
+        });
+        
+    }
+
+    function setStatus(){
+        if($("#kodeStatus").val()=="" || $("#kodeStatus").val()==null || $("#kodeStatus").val().length==0){
+            kodeStatusFalse();
+        }
+        if(statusEngine==0){
+            engineNotStart();
+            return false;
+        }
+        status = $("#kodeStatus").val();
+        $.ajax({
+            url: url+ 'Activity/getByKode',
+            type: 'GET',
+            async: false,
+            timeout: 600,
+            data: {kode: status},
+            dataType: 'JSON',
+            success: function(e){
+                status = e.activity;
+                $("#status-now").html(status);
+                submitting();
+                timerStatus();
+            }
+        });
+    }
+
+    function setMuatan(e){
+        if(statusEngine==0){
+            // alert("Engine Timer Belum Aktif");
+            $("input[name=muatan]:radio:checked").prop("checked", false);
+            console.log("Gagal Set Muatan");
+            engineNotStart();
+            return false;
+        }
+        console.log("Muatan : " + e);
+        muatan += parseInt(e);
+        if(minutes<=59&&seconds<=59){
+            muatanPerJam += parseInt(e);
+        }
+        submitting();
+    }
+
+    function setStatus(e){
+
+    }
+
+    function notFound(e){
+        navigator.notification.alert(
+            e,  // message
+            alertDismissed,         // callback
+            'Gagal',            // title
+            'OK'                  // buttonName
+        );
+    }    
+
+    function onPause() {
+    // Handle the pause event
+    }
+
+    function onResume() {
+        // Handle the resume event
+    }
+
+    function onMenuKeyDown() {
+        // Handle the menubutton event
+    }
+
+    function engineNotStart(){
+        navigator.notification.beep(1);
+        navigator.notification.alert(
+            'Engine Timer Belum Aktif',  // message
+            alertDismissed,         // callback
+            'Gagal',            // title
+            'OK'                  // buttonName
+        );
+    }
+
+    function kodeStatusFalse(){
+        navigator.notification.beep(1);
+        navigator.notification.alert(
+            'Kode Status Belum Terisi Dengan Benar',  // message
+            alertDismissed,         // callback
+            'Gagal',            // title
+            'OK'                  // buttonName
+        );
+        return false;
+    }
+
+    function loadActivity(){
+        $.ajax({
+            url: url + 'Activity/getAll',
+            success: function(e){
+                console.log(e);
+                var allActivity='';
+                $.each(e, function(i, isi){
+                    allActivity += '<div class="col-4 m-0 custom-control custom-radio"><label for="aktifitias'+i+'" class="btn btn-info border border-dark btn-block text-left p-1 align-middle" style="font-size:8px !important; font-weight:bold"><input type="radio" name="aktifitas" id="aktifitias'+i+'" autocomplete="off" value="'+isi.kode+'" onclick="setAktifitias(this.value)"> '+isi.activity+'</label></div>';
+                });
+                    allActivity += '<div class="col-4 m-0"><button class="btn btn-block btn-danger text-center p-1 border border-dark align-middle" data-target="#myModal" data-toggle="modal" type="button" style="font-size:12px !important; font-weight:bold">Masukkan Kode 0 - 9</button></div>';
+                $("#allActivity").html(allActivity);
+            }
+        });
+        
+    }
+
+    function loadMuatan(){
+        $.ajax({
+            url: url + 'Muatan/getAll',
+            success: function(e){
+                console.log(e);
+                var allMuatan = '';
+                $.each(e, function(i, isi){
+                    allMuatan += '<button type="button" class="btn btn-success btn-block" style="font-size:12px !important;" id="muatan'+i+'" onclick="setMuatan('+isi.kode+')"> <b>'+isi.status+'</b></button>';
+                });
+                $("#listMuatan").html(allMuatan);
+            },
+            error: function(e){
+                alert("Koneksi buruk");
+            }
+        });
+    }
+
+    function loadMetode(){
+        $.ajax({
+            url: url + 'Metode/getAll',
+            success: function(e){
+                console.log(e);
+                var allMetode = '';
+                $.each(e, function(i, isi){
+                    allMetode += '<div class="col-6 m-0 custom-control custom-radio"><label for="metode'+i+'" class="btn border border-dark btn-block text-left" style="font-size:8px !important; font-weight:bold"><input type="radio" name="metode" id="metode'+i+'" onclick=setMetode(this.value) autocomplete="off" value="'+isi.id+'"> '+isi.display+'</label></div>';
+                });
+                $("#allMetode").html(allMetode);
+            }
+        })
+    }
+
+    function loadStatus(){
+        $.ajax({
+            url: url + 'Activity/getAllStatus',
+            success: function(e){
+                console.log(e);
+                var allStatus = '';
+                allStatus += '<span class="badge badge-warning col-12 mb-1 py-1">DAFTAR STATUS</span>'
+                $.each(e, function(i, isi){
+                    allStatus += '<div class="col-4 m-0 custom-control custom-radio"><label for="status'+i+'" class="btn btn-warning border border-dark btn-block text-left p-1" style="font-size:11px !important; font-weight:bold"><input type="radio" name="metode" id="status'+i+'" autocomplete="off" value="'+isi.kode+'" onclick="setStatus(this.value)"> '+isi.activity+'</label></div>';
+                });
+                $("#allStatus").html(allStatus);
+            }
+        });
+    }
+
+    function submitting(){
+        all_productivity_unit = muatan/hitungPerJam;
+        activity_productivity_unit = muatanPerJam;
+        effectivness = (isNaN(minutesAct/minutes)) ? 0 : minutesAct/minutes;
+        data= {material : material, 
+                metode : metode, 
+                aktivitas : aktivitas, 
+                muatan : muatan, 
+                status : status, 
+                statusEngine : statusEngine, 
+                runningTimer : runningTimer, 
+                actTimer : actTimer, 
+                statTimer : statTimer, 
+                createdBy : createdBy, 
+                all_productivity_unit : all_productivity_unit, 
+                activity_productivity_unit : activity_productivity_unit, 
+                effectivness : effectivness, 
+                ritase_sebelum : ritase_sebelum, 
+                ritase_sekarang : ritase_sekarang,
+                jam_sekarang : $(".Hours").html(),
+                id_activity_operator : operator_start.id};
+        $.ajax({
+            url: url + "Operator/engineInput",
+            data: data,
+            type: "POST",
+            async: false,
+            dataType: 'JSON',
+            success: function(e){
+                allProductivityHTML(all_productivity_unit);
+            }
+        })
+    }
+
+    function alertDismissed() {
+    // do something
+    }
+  </script>
+</body>
+</html>
